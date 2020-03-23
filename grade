@@ -1,6 +1,6 @@
 #!/bin/bash
 source grade_utils
-printf "\n\n### Physical number automatic check ###\n"
+printf "\n\n### Grade Physical Number part A ###\n"
 make -f Makefile clean
 
 i=0
