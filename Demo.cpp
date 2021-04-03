@@ -15,14 +15,14 @@ using namespace std;
 using namespace ariel;
 
 int main() {
-  ifstream units_file("units.txt");
+  ifstream units_file{"units.txt"};
   PhysicalNumber::read(units_file);
 
   PhysicalNumber a{2, "km"};   // 2 kilometers
   cout << a << endl;           // Prints "2[km]".
   cout << (-a) << endl;    // Prints "-2[km]"
 
-  PhysicalNumber b(300, "m");  // 300 meters
+  PhysicalNumber b{300, "m"};  // 300 meters
   cout << (a+b) << endl;   // Prints "2.3[km]". Note: units are determined by first number (a).
   cout << (b-a) << endl;   // Prints "-1700[m]". Note: units are determined by first number (b).
 
@@ -31,8 +31,8 @@ int main() {
   cout << (a<=b) << endl;  // Prints "false"
   cout << (a==PhysicalNumber{2000, "m"}) << endl;  // Prints "true"
 
-  istringstream input("700 [ kg ]");
-  input >> a;
+  istringstream sample_input{"700 [ kg ]"};
+  sample_input >> a;
   cout << a << endl;   // Prints "700[kg]"
   cout << (a += PhysicalNumber{1, "ton"}) << endl;  // prints "1700[kg]"
   cout << a << endl;   // Prints "1700[kg]". Note that a has changed.
