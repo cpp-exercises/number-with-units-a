@@ -1,22 +1,29 @@
 #!make -f
 
-all: demo
-	./$<
+CXX=clang++-9 
+CXXFLAGS=-std=c++2a -Werror -Wsign-conversion
 
-demo:  PhysicalNumber.o OurPhysicalNumberDemo.o
-	clang++-5.0 -std=c++17 $^ -o demo
+SOURCES=PhysicalNumber.cpp
+OBJECTS=$(subst .cpp,.o,$(SOURCES))
 
-test:  PhysicalNumber.o OurPhysicalNumberTest.o 
-	clang++-5.0 -std=c++17 $^ -o test
+run: demo
+	./$^
 
-your_test_our_class: PhysicalNumberTest.cpp
-	clang++-5.0 -std=c++17 PhysicalNumberTest.cpp -o your_test_our_class
+demo: Demo.o $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o demo
+
+test: TestCounter.o Test.o $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o test
+
+tidy:
+	clang-tidy $(SOURCES) -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-cppcoreguidelines-owning-memory --warnings-as-errors=-* --
+
+# your_test_our_class: PhysicalNumberTest.cpp
+# 	$(CXX) $(CXXFLAGS) PhysicalNumberTest.cpp -o your_test_our_class
 
 %.o: %.cpp
-	clang++-5.0 -std=c++17 --compile $< -o $@
+	$(CXX) $(CXXFLAGS) --compile $< -o $@
 
-%PhysicalNumber%.o: PhysicalNumber.h Unit.h
-%Test%.o: badkan.hpp
 
 clean:
-	rm -f *.o demo test your_test_our_class
+	rm -f *.o demo test
