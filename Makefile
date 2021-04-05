@@ -3,7 +3,7 @@
 CXX=clang++-9 
 CXXFLAGS=-std=c++2a -Werror -Wsign-conversion
 
-SOURCES=PhysicalNumber.cpp
+SOURCES=NumberWithUnits.cpp
 OBJECTS=$(subst .cpp,.o,$(SOURCES))
 
 run: demo
@@ -18,8 +18,8 @@ test: TestCounter.o Test.o $(OBJECTS)
 tidy:
 	clang-tidy $(SOURCES) -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-cppcoreguidelines-owning-memory --warnings-as-errors=-* --
 
-# your_test_our_class: PhysicalNumberTest.cpp
-# 	$(CXX) $(CXXFLAGS) PhysicalNumberTest.cpp -o your_test_our_class
+# your_test_our_class: NumberWithUnitsTest.cpp
+# 	$(CXX) $(CXXFLAGS) NumberWithUnitsTest.cpp -o your_test_our_class
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
