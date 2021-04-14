@@ -21,7 +21,7 @@ int main()
 
   NumberWithUnits a{2, "km"}; // 2 kilometers
   cout << a << endl;          // Prints "2[km]".
-  cout << (-a) << endl;       // Prints "-2[km]"
+  cout << (-a) << endl;      // Prints "-2[km]"
   cout << (3 * a) << endl;    // Prints "6[km]"
 
   NumberWithUnits b{300, "m"}; // 300 meters
