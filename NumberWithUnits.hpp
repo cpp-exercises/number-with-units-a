@@ -30,6 +30,8 @@ namespace ariel
         friend NumberWithUnits operator--(const NumberWithUnits &num);
         friend NumberWithUnits operator++(const NumberWithUnits &num);
 
+        std::ostream &operator<<(std::ostream &out);
+        std::istream &operator>>(std::istream &in);
         friend std::ostream &operator<<(std::ostream &out, const NumberWithUnits &num);
         friend std::istream &operator>>(std::istream &in, NumberWithUnits &num);
 
