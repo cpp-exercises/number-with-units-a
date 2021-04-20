@@ -27,11 +27,9 @@ namespace ariel
 
         NumberWithUnits &operator--(int);
         NumberWithUnits &operator++(int);
-        friend NumberWithUnits operator--(const NumberWithUnits &num);
-        friend NumberWithUnits operator++(const NumberWithUnits &num);
+        NumberWithUnits operator--();
+        NumberWithUnits operator++();
 
-        std::ostream &operator<<(std::ostream &out);
-        std::istream &operator>>(std::istream &in);
         friend std::ostream &operator<<(std::ostream &out, const NumberWithUnits &num);
         friend std::istream &operator>>(std::istream &in, NumberWithUnits &num);
 
