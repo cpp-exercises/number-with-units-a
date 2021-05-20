@@ -16,10 +16,7 @@ test: TestCounter.o Test.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o test
 
 tidy:
-	clang-tidy $(SOURCES) -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-cppcoreguidelines-owning-memory --warnings-as-errors=-* --
-
-# your_test_our_class: NumberWithUnitsTest.cpp
-# 	$(CXX) $(CXXFLAGS) NumberWithUnitsTest.cpp -o your_test_our_class
+	clang-tidy $(SOURCES) -extra-arg=-std=c++2a -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-cppcoreguidelines-owning-memory --warnings-as-errors=-* --
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
